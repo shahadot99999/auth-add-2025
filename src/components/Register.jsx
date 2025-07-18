@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import { Result } from 'postcss';
 
 const Register = () => {
 
+
+    const navigate = useNavigate() ;
 
     const {createUser } =useContext(AuthContext);
 
@@ -21,6 +23,8 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             console.log(result.user);
+            e.target.reset();
+            navigate('/');
         })
         .catch(error =>{
             console.log('Error', error.message)
